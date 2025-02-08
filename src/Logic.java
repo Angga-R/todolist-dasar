@@ -6,9 +6,16 @@ public class Logic {
         String[] data = Model.data;
         for(int i = 0; i < data.length; i++) {
             if(data[i] == null) {
-                continue;
+                if((i + 1) < data.length && data[i + 1] != null) {
+                    data[i] = data[i + 1];
+                    data[i + 1] = null;
+                    System.out.println(i + 1 + ". " + data[i]);
+                } else {
+                    break;
+                }
+            } else {
+                System.out.println(i + 1 + ". " + data[i]);
             }
-            System.out.println(i + 1 + ". " + data[i]);
         }
     }
 
@@ -48,7 +55,11 @@ public class Logic {
 
     }
 
-    public static void removeTodolist() {
-
+    public static void removeTodolist(int number) {
+        if(number > Model.data.length || number == 0 || number < 0 || Model.data[number - 1] == null) {
+            System.out.println("Number not found");
+        } else {
+            Model.data[number - 1] = null;
+        }
     }
 }
