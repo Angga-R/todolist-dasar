@@ -42,24 +42,26 @@ public class Logic {
         for (int i = 0; i < Model.data.length; i++) {
             // cek data kosong
             if (Model.data[i] == null) {
-                // cek apakah di index selanjutnya terdapat data
-                if((i + 1) < Model.data.length && Model.data[i + 1] != null) {
-                    Model.data[i] = Model.data[i + 1];
-                    Model.data[i + 1] = null;
-                } else {
+//                // cek apakah di index selanjutnya terdapat data
+//                if((i + 1) < Model.data.length && Model.data[i + 1] != null) {
+//                    Model.data[i] = Model.data[i + 1];
+//                    Model.data[i + 1] = null;
+//                } else {
                     Model.data[i] = todo;
+                System.out.println("- Todo added! -");
                     break;
-                }
+                // }
             }
         }
 
     }
 
-    public static void removeTodolist(int number) {
+    public static boolean removeTodolist(int number) {
         if(number > Model.data.length || number == 0 || number < 0 || Model.data[number - 1] == null) {
-            System.out.println("Number not found");
+            return false;
         } else {
             Model.data[number - 1] = null;
+            return true;
         }
     }
 }
